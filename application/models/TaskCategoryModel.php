@@ -62,8 +62,7 @@ class TaskCategoryModel extends CI_Model{
 
   public function add($data){
     $this->db->insert("task_categories", $data);
-    $data['id'] = $this->db->insert_id();
-    return $data;
+    return $this->find($this->db->insert_id());
   }
 
   public function edit($id, $data){

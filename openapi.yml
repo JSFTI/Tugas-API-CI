@@ -1,50 +1,54 @@
 openapi: 3.0.0
 info:
   title: SIB Tasks
-  description: >-
-    This API is made to fulfill the assignment from PT. Arkatama Multisolusindo
-    in FWD SIB program.
+  description: This API is made to fulfill the assignment from PT. Arkatama Multisolusindo in FWD SIB program.
   version: 1.0.0
 servers:
-  - url: http://{{base_url}}
+  - url: http://localhost:8000
+  - url: https://jasonsuryafaylim-fwd1.infinityfreeapp.com
 tags:
   - name: Task Category
     description: This collection manages task categories.
   - name: Task
-    description: >-
+    description: |-
       This collection manages tasks.
 
-
-      Note: to upload a file, HTTP Content-Type must be set to
-      multipart/form-data. Thus, POST and PUT must use multipart/form-data
-      content-type to upload files. PATCH is not required to use
-      multipart/form-data if there is no need for file upload.
+      Note: to upload a file, HTTP Content-Type must be set to multipart/form-data. Thus, POST and PUT must use multipart/form-data content-type to upload files. PATCH is not required to use multipart/form-data if there is no need for file upload.
 paths:
   /task-categories:
     get:
       tags:
         - Task Category
       summary: Task Categories
+      parameters:
+        - in: query
+          name: page
+          description: Page to view.
+          schema:
+            type: number
+            example: 1
+        - in: query
+          name: limit
+          description: Number of items in a page
+          schema:
+            type: number
+            example: 1
+        - in: query
+          name: name
+          description: Filter by name
+          schema:
+            type: number
+            example: 1
+        - in: query
+          name: no_pagination
+          description: If provided with 1, response will not be paginated
+          schema:
+            type: number
+            example: 1
       responses:
         '200':
           description: OK
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:23:56 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -106,32 +110,39 @@ paths:
         - Task Category
       summary: Task Category
       requestBody:
+        required: true
         content:
           application/json:
             schema:
               type: object
-              example:
-                name: null
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  example: Category Name
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  example: Category Name
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  example: Category Name
       responses:
         '201':
           description: Created
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:23:51 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -140,28 +151,17 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
               example:
                 name: Peningkatan
                 id: 7
         '422':
-          description: Unknown Status Code
+          description: Unprocessable Entity
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:29:36 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -169,11 +169,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Unprocessable Entity
-                errors:
-                  name: Kategori harus memiliki nama
+                $ref: '#/components/schemas/InvalidResponse'
   /task-categories/{task_category_id}:
     get:
       tags:
@@ -190,22 +186,6 @@ paths:
         '200':
           description: OK
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:27:39 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -214,28 +194,17 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
               example:
                 id: '3'
                 name: Urusan Keluarga
         '404':
           description: Not Found
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:28:40 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -243,9 +212,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Not Found
+                $ref: '#/components/schemas/SimpleErrorMessage'
     put:
       tags:
         - Task Category
@@ -255,8 +222,30 @@ paths:
           application/json:
             schema:
               type: object
-              example:
-                name: null
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  example: Category Name
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  example: Category Name
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  example: Category Name
       parameters:
         - name: task_category_id
           in: path
@@ -267,51 +256,9 @@ paths:
       responses:
         '204':
           description: No Content
-          headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:31:01 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
-            Content-type:
-              schema:
-                type: string
-                example: text/html; charset=UTF-8
-          content:
-            text/plain:
-              schema:
-                type: string
-              example: null
         '404':
           description: Not Found
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:30:31 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -319,28 +266,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Not Found
+                $ref: '#/components/schemas/SimpleErrorMessage'
         '422':
-          description: Unknown Status Code
+          description: Unprocessable Entity
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:31:20 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -348,11 +277,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Unprocessable Entity
-                errors:
-                  name: Kategori harus memiliki nama
+                $ref: '#/components/schemas/InvalidResponse'
     delete:
       tags:
         - Task Category
@@ -367,51 +292,9 @@ paths:
       responses:
         '204':
           description: No Content
-          headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:32:19 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
-            Content-type:
-              schema:
-                type: string
-                example: text/html; charset=UTF-8
-          content:
-            text/plain:
-              schema:
-                type: string
-              example: null
         '404':
           description: Not Found
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:31:44 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -419,9 +302,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Not Found
+                $ref: '#/components/schemas/SimpleErrorMessage'
     patch:
       tags:
         - Task Category
@@ -431,8 +312,24 @@ paths:
           application/json:
             schema:
               type: object
-              example:
-                name: null
+              properties:
+                name:
+                  type: string
+                  example: Category Name
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Category Name
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Category Name
       parameters:
         - name: task_category_id
           in: path
@@ -443,51 +340,9 @@ paths:
       responses:
         '204':
           description: No Content
-          headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:32:55 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
-            Content-type:
-              schema:
-                type: string
-                example: text/html; charset=UTF-8
-          content:
-            text/plain:
-              schema:
-                type: string
-              example: null
         '404':
           description: Not Found
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:33:29 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -495,28 +350,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Not Found
+                $ref: '#/components/schemas/SimpleErrorMessage'
         '422':
-          description: Unknown Status Code
+          description: Unprocessable Entity
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 04:34:26 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -524,36 +361,74 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Unprocessable Entity
-                errors:
-                  name: Kategori harus memiliki nama
+                $ref: '#/components/schemas/InvalidResponse'
   /tasks:
     get:
       tags:
         - Task
       summary: Tasks
+      parameters:
+        - in: query
+          name: page
+          description: Page number
+          schema:
+            type: number
+            example: 1
+        - in: query
+          name: limit
+          description: Number of items to show
+          schema:
+            type: number
+            example: 10
+        - in: query
+          name: status
+          description: Number of items to show
+          schema:
+            type: string
+            example: New
+            enum:
+              - New
+              - On Progress
+              - Finish
+        - in: query
+          name: title
+          description: Filter task by title.
+          schema:
+            type: string
+            example: Title
+        - in: query
+          name: after_start_date
+          description: Filter task after start_date.
+          schema:
+            type: string
+            example: '2020-01-01'
+            format: date
+        - in: query
+          name: before_finish_date
+          description: Filter task before finish_date.
+          schema:
+            type: string
+            example: '2020-01-01'
+            format: date
+        - in: query
+          name: no_pagination
+          description: If provided with 1, response will not be paginated.
+          schema:
+            type: number
+            example: 1
+        - in: query
+          name: joins
+          description: Return tasks with its other relations. Task has a category relation
+          schema:
+            type: array
+            items:
+              type: string
+            enum:
+              - category
       responses:
         '200':
           description: OK
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 07:55:36 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -577,7 +452,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/gJMiqks79I-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/gJMiqks79I-Some%20File.pdf
                       - id: '2'
                         category_id: '1'
                         title: Task B
@@ -585,7 +460,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/KBMqmxHa1R-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/KBMqmxHa1R-Some%20File.pdf
                       - id: '3'
                         category_id: '1'
                         title: Task C
@@ -593,7 +468,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/RFX0ThCeGV-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/RFX0ThCeGV-Some%20File.pdf
                       - id: '4'
                         category_id: '1'
                         title: Task D
@@ -601,7 +476,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/ilbYXGBuIO-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/ilbYXGBuIO-Some%20File.pdf
                       - id: '5'
                         category_id: '1'
                         title: Task E
@@ -609,7 +484,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/4CvFh7rwAm-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/4CvFh7rwAm-Some%20File.pdf
                       - id: '6'
                         category_id: '1'
                         title: Task F
@@ -617,7 +492,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/06IWNqpDSG-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/06IWNqpDSG-Some%20File.pdf
                       - id: '7'
                         category_id: '1'
                         title: Task G
@@ -625,7 +500,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/AxKXZCBMsI-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/AxKXZCBMsI-Some%20File.pdf
                       - id: '8'
                         category_id: '1'
                         title: Task H
@@ -633,7 +508,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/W5wIET8DGj-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/W5wIET8DGj-Some%20File.pdf
                       - id: '9'
                         category_id: '1'
                         title: Task I
@@ -641,7 +516,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/NpR9eDFOjC-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/NpR9eDFOjC-Some%20File.pdf
                       - id: '10'
                         category_id: '1'
                         title: Task J
@@ -649,7 +524,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/5YvFLT1WGD-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/5YvFLT1WGD-Some%20File.pdf
                 example-1:
                   summary: Get Tasks
                   value:
@@ -660,7 +535,7 @@ paths:
                       start_date: '2001-01-01'
                       finish_date: '2001-01-02'
                       status: New
-                      doc_url: localhost:8000/upload/tasks/gJMiqks79I-Some%20File.pdf
+                      doc_url: http://localhost/upload/tasks/gJMiqks79I-Some%20File.pdf
                     - id: '2'
                       category_id: '1'
                       title: Task B
@@ -668,7 +543,7 @@ paths:
                       start_date: '2001-01-01'
                       finish_date: '2001-01-02'
                       status: New
-                      doc_url: localhost:8000/upload/tasks/KBMqmxHa1R-Some%20File.pdf
+                      doc_url: http://localhost/upload/tasks/KBMqmxHa1R-Some%20File.pdf
                     - id: '3'
                       category_id: '1'
                       title: Task C
@@ -676,7 +551,7 @@ paths:
                       start_date: '2001-01-01'
                       finish_date: '2001-01-02'
                       status: New
-                      doc_url: localhost:8000/upload/tasks/RFX0ThCeGV-Some%20File.pdf
+                      doc_url: http://localhost/upload/tasks/RFX0ThCeGV-Some%20File.pdf
                     - id: '4'
                       category_id: '1'
                       title: Task D
@@ -684,7 +559,7 @@ paths:
                       start_date: '2001-01-01'
                       finish_date: '2001-01-02'
                       status: New
-                      doc_url: localhost:8000/upload/tasks/ilbYXGBuIO-Some%20File.pdf
+                      doc_url: http://localhost/upload/tasks/ilbYXGBuIO-Some%20File.pdf
                     - id: '5'
                       category_id: '1'
                       title: Task E
@@ -692,7 +567,7 @@ paths:
                       start_date: '2001-01-01'
                       finish_date: '2001-01-02'
                       status: New
-                      doc_url: localhost:8000/upload/tasks/4CvFh7rwAm-Some%20File.pdf
+                      doc_url: http://localhost/upload/tasks/4CvFh7rwAm-Some%20File.pdf
                     - id: '6'
                       category_id: '1'
                       title: Task F
@@ -700,7 +575,7 @@ paths:
                       start_date: '2001-01-01'
                       finish_date: '2001-01-02'
                       status: New
-                      doc_url: localhost:8000/upload/tasks/06IWNqpDSG-Some%20File.pdf
+                      doc_url: http://localhost/upload/tasks/06IWNqpDSG-Some%20File.pdf
                     - id: '7'
                       category_id: '1'
                       title: Task G
@@ -708,7 +583,7 @@ paths:
                       start_date: '2001-01-01'
                       finish_date: '2001-01-02'
                       status: New
-                      doc_url: localhost:8000/upload/tasks/AxKXZCBMsI-Some%20File.pdf
+                      doc_url: http://localhost/upload/tasks/AxKXZCBMsI-Some%20File.pdf
                     - id: '8'
                       category_id: '1'
                       title: Task H
@@ -716,7 +591,7 @@ paths:
                       start_date: '2001-01-01'
                       finish_date: '2001-01-02'
                       status: New
-                      doc_url: localhost:8000/upload/tasks/W5wIET8DGj-Some%20File.pdf
+                      doc_url: http://localhost/upload/tasks/W5wIET8DGj-Some%20File.pdf
                     - id: '9'
                       category_id: '1'
                       title: Task I
@@ -724,7 +599,7 @@ paths:
                       start_date: '2001-01-01'
                       finish_date: '2001-01-02'
                       status: New
-                      doc_url: localhost:8000/upload/tasks/NpR9eDFOjC-Some%20File.pdf
+                      doc_url: http://localhost/upload/tasks/NpR9eDFOjC-Some%20File.pdf
                     - id: '10'
                       category_id: '1'
                       title: Task J
@@ -732,7 +607,7 @@ paths:
                       start_date: '2001-01-01'
                       finish_date: '2001-01-02'
                       status: New
-                      doc_url: localhost:8000/upload/tasks/5YvFLT1WGD-Some%20File.pdf
+                      doc_url: http://localhost/upload/tasks/5YvFLT1WGD-Some%20File.pdf
                     - id: '11'
                       category_id: '1'
                       title: Task K
@@ -740,7 +615,7 @@ paths:
                       start_date: '2001-01-01'
                       finish_date: '2001-01-02'
                       status: New
-                      doc_url: localhost:8000/upload/tasks/U2Qk3RVLTj-Some%20File.pdf
+                      doc_url: http://localhost/upload/tasks/U2Qk3RVLTj-Some%20File.pdf
                 example-2:
                   summary: Filter Tasks
                   value:
@@ -755,7 +630,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/gJMiqks79I-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/gJMiqks79I-Some%20File.pdf
                 example-3:
                   summary: Tasks With Category
                   value:
@@ -770,7 +645,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/gJMiqks79I-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/gJMiqks79I-Some%20File.pdf
                         category:
                           id: '1'
                           name: Lain-lain
@@ -781,7 +656,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/KBMqmxHa1R-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/KBMqmxHa1R-Some%20File.pdf
                         category:
                           id: '1'
                           name: Lain-lain
@@ -792,7 +667,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/RFX0ThCeGV-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/RFX0ThCeGV-Some%20File.pdf
                         category:
                           id: '1'
                           name: Lain-lain
@@ -803,7 +678,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/ilbYXGBuIO-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/ilbYXGBuIO-Some%20File.pdf
                         category:
                           id: '1'
                           name: Lain-lain
@@ -814,7 +689,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/4CvFh7rwAm-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/4CvFh7rwAm-Some%20File.pdf
                         category:
                           id: '1'
                           name: Lain-lain
@@ -825,7 +700,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/06IWNqpDSG-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/06IWNqpDSG-Some%20File.pdf
                         category:
                           id: '1'
                           name: Lain-lain
@@ -836,7 +711,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/AxKXZCBMsI-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/AxKXZCBMsI-Some%20File.pdf
                         category:
                           id: '1'
                           name: Lain-lain
@@ -847,7 +722,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/W5wIET8DGj-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/W5wIET8DGj-Some%20File.pdf
                         category:
                           id: '1'
                           name: Lain-lain
@@ -858,7 +733,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/NpR9eDFOjC-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/NpR9eDFOjC-Some%20File.pdf
                         category:
                           id: '1'
                           name: Lain-lain
@@ -869,7 +744,7 @@ paths:
                         start_date: '2001-01-01'
                         finish_date: '2001-01-02'
                         status: New
-                        doc_url: localhost:8000/upload/tasks/5YvFLT1WGD-Some%20File.pdf
+                        doc_url: http://localhost/upload/tasks/5YvFLT1WGD-Some%20File.pdf
                         category:
                           id: '1'
                           name: Lain-lain
@@ -882,42 +757,41 @@ paths:
           multipart/form-data:
             schema:
               type: object
+              required:
+                - category_id
+                - title
+                - start_date
+                - finish_date
+                - doc
               properties:
                 category_id:
                   type: integer
-                  example: '2'
+                  example: 1
                 title:
                   type: string
-                  example: Task Z
+                  example: New Task
                 start_date:
                   type: string
+                  format: date
                   example: '2001-01-01'
                 finish_date:
                   type: string
+                  format: date
                   example: '2001-01-02'
                 doc:
                   type: string
                   format: binary
+                status:
+                  type: string
+                  enum:
+                    - New
+                    - On Progress
+                    - Finish
+                  example: New
       responses:
         '201':
           description: Created
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:29:27 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -926,32 +800,41 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  category_id:
+                    type: integer
+                    example: 1
+                  title:
+                    type: string
+                    example: New Task
+                  start_date:
+                    type: string
+                    format: date
+                    example: '2001-01-01'
+                  finish_date:
+                    type: string
+                    format: date
+                    example: '2001-01-02'
+                  doc:
+                    type: string
+                    format: binary
+                  status:
+                    type: string
+                    enum:
+                      - New
+                      - On Progress
+                      - Finish
+                    example: New
               example:
                 category_id: '2'
                 title: Task Z
                 start_date: '2001-01-01'
                 finish_date: '2001-01-02'
-                doc_url: localhost:8000/upload/tasks/n6KPmeCu8R-Some%20File.pdf
+                doc_url: http://localhost/upload/tasks/n6KPmeCu8R-Some%20File.pdf
                 id: 12
         '422':
-          description: Unknown Status Code
+          description: Unprocessable Entity
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:31:01 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -959,49 +842,32 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Unprocessable Entity
-                errors:
-                  title: Harap masukkan judul
+                $ref: '#/components/schemas/InvalidResponse'
   /tasks/{task_id}:
     get:
       tags:
         - Task
       summary: Task
       parameters:
-        - name: joins[]
-          in: query
+        - in: query
+          name: joins
+          description: Return tasks with its other relations. Task has a category relation
           schema:
-            type: string
-          description: Return task with its other relation. Task has a category relation.
-          example: category
+            type: array
+            items:
+              type: string
+            enum:
+              - category
         - name: task_id
           in: path
           schema:
             type: integer
           required: true
-          example: '3'
+          example: 3
       responses:
         '200':
           description: OK
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:04:17 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -1021,7 +887,7 @@ paths:
                     start_date: '2001-01-01'
                     finish_date: '2001-01-02'
                     status: New
-                    doc_url: localhost:8000/upload/tasks/5YvFLT1WGD-Some%20File.pdf
+                    doc_url: http://localhost/upload/tasks/5YvFLT1WGD-Some%20File.pdf
                 example-1:
                   summary: Task With Category
                   value:
@@ -1032,29 +898,13 @@ paths:
                     start_date: '2001-01-01'
                     finish_date: '2001-01-02'
                     status: New
-                    doc_url: localhost:8000/upload/tasks/RFX0ThCeGV-Some%20File.pdf
+                    doc_url: http://localhost/upload/tasks/RFX0ThCeGV-Some%20File.pdf
                     category:
                       id: '1'
                       name: Lain-lain
         '404':
           description: Not Found
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:04:35 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -1062,9 +912,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Not Found
+                $ref: '#/components/schemas/SimpleErrorMessage'
     put:
       tags:
         - Task
@@ -1074,25 +922,38 @@ paths:
           multipart/form-data:
             schema:
               type: object
+              required:
+                - category_id
+                - title
+                - start_date
+                - finish_date
+                - status
+                - doc
               properties:
+                category_id:
+                  type: integer
+                  example: 1
                 title:
                   type: string
-                  example: Judul X
+                  example: New Task
                 start_date:
                   type: string
+                  format: date
                   example: '2001-01-01'
                 finish_date:
                   type: string
-                  example: '2001-01-01'
-                status:
-                  type: string
-                  example: New
-                category_id:
-                  type: integer
-                  example: '3'
+                  format: date
+                  example: '2001-01-02'
                 doc:
                   type: string
                   format: binary
+                status:
+                  type: string
+                  enum:
+                    - New
+                    - On Progress
+                    - Finish
+                  example: New
       parameters:
         - name: task_id
           in: path
@@ -1103,51 +964,9 @@ paths:
       responses:
         '204':
           description: No Content
-          headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:31:53 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
-            Content-type:
-              schema:
-                type: string
-                example: text/html; charset=UTF-8
-          content:
-            text/plain:
-              schema:
-                type: string
-              example: null
         '404':
           description: Not Found
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:36:09 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -1155,28 +974,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Not Found
+                $ref: '#/components/schemas/SimpleErrorMessage'
         '422':
-          description: Unknown Status Code
+          description: Unprocessable Entity
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:34:19 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -1184,11 +985,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Unprocessable Entity
-                errors:
-                  doc: You did not select a file to upload.
+                $ref: '#/components/schemas/InvalidResponse'
     delete:
       tags:
         - Task
@@ -1203,51 +1000,9 @@ paths:
       responses:
         '204':
           description: No Content
-          headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:35:34 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
-            Content-type:
-              schema:
-                type: string
-                example: text/html; charset=UTF-8
-          content:
-            text/plain:
-              schema:
-                type: string
-              example: null
         '404':
           description: Not Found
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:35:53 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -1255,20 +1010,91 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Not Found
+                $ref: '#/components/schemas/SimpleErrorMessage'
     patch:
       tags:
         - Task
       summary: Task
       requestBody:
         content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: integer
+                  example: 1
+                title:
+                  type: string
+                  example: New Task
+                start_date:
+                  type: string
+                  format: date
+                  example: '2001-01-01'
+                finish_date:
+                  type: string
+                  format: date
+                  example: '2001-01-02'
+                doc:
+                  type: string
+                  format: binary
+                status:
+                  type: string
+                  enum:
+                    - New
+                    - On Progress
+                    - Finish
+                  example: New
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: integer
+                  example: 1
+                title:
+                  type: string
+                  example: New Task
+                start_date:
+                  type: string
+                  format: date
+                  example: '2001-01-01'
+                finish_date:
+                  type: string
+                  format: date
+                  example: '2001-01-02'
+                status:
+                  type: string
+                  enum:
+                    - New
+                    - On Progress
+                    - Finish
+                  example: New
           application/json:
             schema:
               type: object
-              example:
-                title: null
+              properties:
+                category_id:
+                  type: integer
+                  example: 1
+                title:
+                  type: string
+                  example: New Task
+                start_date:
+                  type: string
+                  format: date
+                  example: '2001-01-01'
+                finish_date:
+                  type: string
+                  format: date
+                  example: '2001-01-02'
+                status:
+                  type: string
+                  enum:
+                    - New
+                    - On Progress
+                    - Finish
+                  example: New
       parameters:
         - name: task_id
           in: path
@@ -1279,51 +1105,9 @@ paths:
       responses:
         '204':
           description: No Content
-          headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:36:36 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
-            Content-type:
-              schema:
-                type: string
-                example: text/html; charset=UTF-8
-          content:
-            text/plain:
-              schema:
-                type: string
-              example: null
         '404':
           description: Not Found
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:37:19 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -1331,28 +1115,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Not Found
+                $ref: '#/components/schemas/SimpleErrorMessage'
         '422':
-          description: Unknown Status Code
+          description: Unprocessable Entity
           headers:
-            Host:
-              schema:
-                type: string
-                example: localhost:8000
-            Date:
-              schema:
-                type: string
-                example: Mon, 31 Oct 2022 08:37:49 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/7.4.32
             Content-Type:
               schema:
                 type: string
@@ -1360,8 +1126,22 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-              example:
-                message: Unprocessable Entity
-                errors:
-                  title: Harap masukkan judul
+                $ref: '#/components/schemas/InvalidResponse'
+components:
+  schemas:
+    InvalidResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Unprocessable Entity
+        errors:
+          type: object
+          example:
+            field: Error message.
+    SimpleErrorMessage:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Not Found

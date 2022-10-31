@@ -16,7 +16,7 @@ if(!function_exists('view_json')){
   function view_json($array = [], $status = 200){
     http_response_code($status);
     header("Content-Type: application/json");
-    return json_encode((array) $array);
+    return json_encode((array) $array, JSON_NUMERIC_CHECK);
   }
 }
 

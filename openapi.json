@@ -1,0 +1,1641 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "SIB Tasks",
+    "description": "This API is made to fulfill the assignment from PT. Arkatama Multisolusindo in FWD SIB program.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000"
+    },
+    {
+      "url": "https://jasonsuryafaylim-fwd1.infinityfreeapp.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Task Category",
+      "description": "This collection manages task categories."
+    },
+    {
+      "name": "Task",
+      "description": "This collection manages tasks.\n\nNote: to upload a file, HTTP Content-Type must be set to multipart/form-data. Thus, POST and PUT must use multipart/form-data content-type to upload files. PATCH is not required to use multipart/form-data if there is no need for file upload."
+    }
+  ],
+  "paths": {
+    "/task-categories": {
+      "get": {
+        "tags": [
+          "Task Category"
+        ],
+        "summary": "Task Categories",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Page to view.",
+            "schema": {
+              "type": "number",
+              "example": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Number of items in a page",
+            "schema": {
+              "type": "number",
+              "example": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "description": "Filter by name",
+            "schema": {
+              "type": "number",
+              "example": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "no_pagination",
+            "description": "If provided with 1, response will not be paginated",
+            "schema": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "Task Categories With Pagination",
+                    "value": {
+                      "current_page": 1,
+                      "count": 7,
+                      "last_page": 1,
+                      "data": [
+                        {
+                          "id": "1",
+                          "name": "Tugas Sekolah"
+                        },
+                        {
+                          "id": "2",
+                          "name": "Transportasi"
+                        },
+                        {
+                          "id": "3",
+                          "name": "Urusan Keluarga"
+                        },
+                        {
+                          "id": "4",
+                          "name": "Kesehatan"
+                        },
+                        {
+                          "id": "5",
+                          "name": "Keuangan"
+                        },
+                        {
+                          "id": "6",
+                          "name": "Sosial"
+                        },
+                        {
+                          "id": "7",
+                          "name": "Peningkatan"
+                        }
+                      ]
+                    }
+                  },
+                  "example-1": {
+                    "summary": "Task Categories",
+                    "value": [
+                      {
+                        "id": "1",
+                        "name": "Tugas Sekolah"
+                      },
+                      {
+                        "id": "2",
+                        "name": "Transportasi"
+                      },
+                      {
+                        "id": "3",
+                        "name": "Urusan Keluarga"
+                      },
+                      {
+                        "id": "4",
+                        "name": "Kesehatan"
+                      },
+                      {
+                        "id": "5",
+                        "name": "Keuangan"
+                      },
+                      {
+                        "id": "6",
+                        "name": "Sosial"
+                      },
+                      {
+                        "id": "7",
+                        "name": "Peningkatan"
+                      }
+                    ]
+                  },
+                  "example-2": {
+                    "summary": "Task Categories FIltering",
+                    "value": {
+                      "current_page": 1,
+                      "count": 1,
+                      "last_page": 1,
+                      "data": [
+                        {
+                          "id": "1",
+                          "name": "Tugas Sekolah"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Task Category"
+        ],
+        
+        "summary": "Task Category",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Category Name"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Category Name"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Category Name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "name": "Peningkatan",
+                  "id": 7
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/task-categories/{task_category_id}": {
+      "get": {
+        "tags": [
+          "Task Category"
+        ],
+        "summary": "Task Category",
+        "parameters": [
+          {
+            "name": "task_category_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of category"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "3",
+                  "name": "Urusan Keluarga"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Task Category"
+        ],
+        "summary": "Task Category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Category Name"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Category Name"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Category Name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "task_category_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of category"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleErrorMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Task Category"
+        ],
+        "summary": "Task Category",
+        "parameters": [
+          {
+            "name": "task_category_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of category"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Task Category"
+        ],
+        "summary": "Task Category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Category Name"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Category Name"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Category Name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "task_category_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of category"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleErrorMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Tasks",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Page number",
+            "schema":{
+              "type": "number",
+              "example": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Number of items to show",
+            "schema":{
+              "type": "number",
+              "example": 10
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "description": "Number of items to show",
+            "schema":{
+              "type": "string",
+              "example": "New",
+              "enum": ["New", "On Progress", "Finish"]
+            }
+          },
+          {
+            "in": "query",
+            "name": "title",
+            "description": "Filter task by title.",
+            "schema":{
+              "type": "string",
+              "example": "Title"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after_start_date",
+            "description": "Filter task after start_date.",
+            "schema":{
+              "type": "string",
+              "example": "2020-01-01",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "before_finish_date",
+            "description": "Filter task before finish_date.",
+            "schema":{
+              "type": "string",
+              "example": "2020-01-01",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "no_pagination",
+            "description": "If provided with 1, response will not be paginated.",
+            "schema":{
+              "type": "number",
+              "example": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "joins",
+            "description": "Return tasks with its other relations. Task has a category relation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "enum": ["category"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "Get Tasks WIth Pagination",
+                    "value": {
+                      "current_page": 1,
+                      "count_data": 11,
+                      "last_page": 2,
+                      "data": [
+                        {
+                          "id": "1",
+                          "category_id": "1",
+                          "title": "Task A",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/gJMiqks79I-Some%20File.pdf"
+                        },
+                        {
+                          "id": "2",
+                          "category_id": "1",
+                          "title": "Task B",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/KBMqmxHa1R-Some%20File.pdf"
+                        },
+                        {
+                          "id": "3",
+                          "category_id": "1",
+                          "title": "Task C",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/RFX0ThCeGV-Some%20File.pdf"
+                        },
+                        {
+                          "id": "4",
+                          "category_id": "1",
+                          "title": "Task D",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/ilbYXGBuIO-Some%20File.pdf"
+                        },
+                        {
+                          "id": "5",
+                          "category_id": "1",
+                          "title": "Task E",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/4CvFh7rwAm-Some%20File.pdf"
+                        },
+                        {
+                          "id": "6",
+                          "category_id": "1",
+                          "title": "Task F",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/06IWNqpDSG-Some%20File.pdf"
+                        },
+                        {
+                          "id": "7",
+                          "category_id": "1",
+                          "title": "Task G",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/AxKXZCBMsI-Some%20File.pdf"
+                        },
+                        {
+                          "id": "8",
+                          "category_id": "1",
+                          "title": "Task H",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/W5wIET8DGj-Some%20File.pdf"
+                        },
+                        {
+                          "id": "9",
+                          "category_id": "1",
+                          "title": "Task I",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/NpR9eDFOjC-Some%20File.pdf"
+                        },
+                        {
+                          "id": "10",
+                          "category_id": "1",
+                          "title": "Task J",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/5YvFLT1WGD-Some%20File.pdf"
+                        }
+                      ]
+                    }
+                  },
+                  "example-1": {
+                    "summary": "Get Tasks",
+                    "value": [
+                      {
+                        "id": "1",
+                        "category_id": "1",
+                        "title": "Task A",
+                        "description": null,
+                        "start_date": "2001-01-01",
+                        "finish_date": "2001-01-02",
+                        "status": "New",
+                        "doc_url": "http://localhost/upload/tasks/gJMiqks79I-Some%20File.pdf"
+                      },
+                      {
+                        "id": "2",
+                        "category_id": "1",
+                        "title": "Task B",
+                        "description": null,
+                        "start_date": "2001-01-01",
+                        "finish_date": "2001-01-02",
+                        "status": "New",
+                        "doc_url": "http://localhost/upload/tasks/KBMqmxHa1R-Some%20File.pdf"
+                      },
+                      {
+                        "id": "3",
+                        "category_id": "1",
+                        "title": "Task C",
+                        "description": null,
+                        "start_date": "2001-01-01",
+                        "finish_date": "2001-01-02",
+                        "status": "New",
+                        "doc_url": "http://localhost/upload/tasks/RFX0ThCeGV-Some%20File.pdf"
+                      },
+                      {
+                        "id": "4",
+                        "category_id": "1",
+                        "title": "Task D",
+                        "description": null,
+                        "start_date": "2001-01-01",
+                        "finish_date": "2001-01-02",
+                        "status": "New",
+                        "doc_url": "http://localhost/upload/tasks/ilbYXGBuIO-Some%20File.pdf"
+                      },
+                      {
+                        "id": "5",
+                        "category_id": "1",
+                        "title": "Task E",
+                        "description": null,
+                        "start_date": "2001-01-01",
+                        "finish_date": "2001-01-02",
+                        "status": "New",
+                        "doc_url": "http://localhost/upload/tasks/4CvFh7rwAm-Some%20File.pdf"
+                      },
+                      {
+                        "id": "6",
+                        "category_id": "1",
+                        "title": "Task F",
+                        "description": null,
+                        "start_date": "2001-01-01",
+                        "finish_date": "2001-01-02",
+                        "status": "New",
+                        "doc_url": "http://localhost/upload/tasks/06IWNqpDSG-Some%20File.pdf"
+                      },
+                      {
+                        "id": "7",
+                        "category_id": "1",
+                        "title": "Task G",
+                        "description": null,
+                        "start_date": "2001-01-01",
+                        "finish_date": "2001-01-02",
+                        "status": "New",
+                        "doc_url": "http://localhost/upload/tasks/AxKXZCBMsI-Some%20File.pdf"
+                      },
+                      {
+                        "id": "8",
+                        "category_id": "1",
+                        "title": "Task H",
+                        "description": null,
+                        "start_date": "2001-01-01",
+                        "finish_date": "2001-01-02",
+                        "status": "New",
+                        "doc_url": "http://localhost/upload/tasks/W5wIET8DGj-Some%20File.pdf"
+                      },
+                      {
+                        "id": "9",
+                        "category_id": "1",
+                        "title": "Task I",
+                        "description": null,
+                        "start_date": "2001-01-01",
+                        "finish_date": "2001-01-02",
+                        "status": "New",
+                        "doc_url": "http://localhost/upload/tasks/NpR9eDFOjC-Some%20File.pdf"
+                      },
+                      {
+                        "id": "10",
+                        "category_id": "1",
+                        "title": "Task J",
+                        "description": null,
+                        "start_date": "2001-01-01",
+                        "finish_date": "2001-01-02",
+                        "status": "New",
+                        "doc_url": "http://localhost/upload/tasks/5YvFLT1WGD-Some%20File.pdf"
+                      },
+                      {
+                        "id": "11",
+                        "category_id": "1",
+                        "title": "Task K",
+                        "description": null,
+                        "start_date": "2001-01-01",
+                        "finish_date": "2001-01-02",
+                        "status": "New",
+                        "doc_url": "http://localhost/upload/tasks/U2Qk3RVLTj-Some%20File.pdf"
+                      }
+                    ]
+                  },
+                  "example-2": {
+                    "summary": "Filter Tasks",
+                    "value": {
+                      "current_page": 1,
+                      "count_data": 1,
+                      "last_page": 1,
+                      "data": [
+                        {
+                          "id": "1",
+                          "category_id": "1",
+                          "title": "Task A",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/gJMiqks79I-Some%20File.pdf"
+                        }
+                      ]
+                    }
+                  },
+                  "example-3": {
+                    "summary": "Tasks With Category",
+                    "value": {
+                      "current_page": 1,
+                      "count_data": 11,
+                      "last_page": 2,
+                      "data": [
+                        {
+                          "id": "1",
+                          "category_id": "1",
+                          "title": "Task A",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/gJMiqks79I-Some%20File.pdf",
+                          "category": {
+                            "id": "1",
+                            "name": "Lain-lain"
+                          }
+                        },
+                        {
+                          "id": "2",
+                          "category_id": "1",
+                          "title": "Task B",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/KBMqmxHa1R-Some%20File.pdf",
+                          "category": {
+                            "id": "1",
+                            "name": "Lain-lain"
+                          }
+                        },
+                        {
+                          "id": "3",
+                          "category_id": "1",
+                          "title": "Task C",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/RFX0ThCeGV-Some%20File.pdf",
+                          "category": {
+                            "id": "1",
+                            "name": "Lain-lain"
+                          }
+                        },
+                        {
+                          "id": "4",
+                          "category_id": "1",
+                          "title": "Task D",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/ilbYXGBuIO-Some%20File.pdf",
+                          "category": {
+                            "id": "1",
+                            "name": "Lain-lain"
+                          }
+                        },
+                        {
+                          "id": "5",
+                          "category_id": "1",
+                          "title": "Task E",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/4CvFh7rwAm-Some%20File.pdf",
+                          "category": {
+                            "id": "1",
+                            "name": "Lain-lain"
+                          }
+                        },
+                        {
+                          "id": "6",
+                          "category_id": "1",
+                          "title": "Task F",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/06IWNqpDSG-Some%20File.pdf",
+                          "category": {
+                            "id": "1",
+                            "name": "Lain-lain"
+                          }
+                        },
+                        {
+                          "id": "7",
+                          "category_id": "1",
+                          "title": "Task G",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/AxKXZCBMsI-Some%20File.pdf",
+                          "category": {
+                            "id": "1",
+                            "name": "Lain-lain"
+                          }
+                        },
+                        {
+                          "id": "8",
+                          "category_id": "1",
+                          "title": "Task H",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/W5wIET8DGj-Some%20File.pdf",
+                          "category": {
+                            "id": "1",
+                            "name": "Lain-lain"
+                          }
+                        },
+                        {
+                          "id": "9",
+                          "category_id": "1",
+                          "title": "Task I",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/NpR9eDFOjC-Some%20File.pdf",
+                          "category": {
+                            "id": "1",
+                            "name": "Lain-lain"
+                          }
+                        },
+                        {
+                          "id": "10",
+                          "category_id": "1",
+                          "title": "Task J",
+                          "description": null,
+                          "start_date": "2001-01-01",
+                          "finish_date": "2001-01-02",
+                          "status": "New",
+                          "doc_url": "http://localhost/upload/tasks/5YvFLT1WGD-Some%20File.pdf",
+                          "category": {
+                            "id": "1",
+                            "name": "Lain-lain"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Task",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "category_id",
+                  "title",
+                  "start_date",
+                  "finish_date",
+                  "doc"
+                ],
+                "properties": {
+                  "category_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "New Task"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2001-01-01"
+                  },
+                  "finish_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2001-01-02"
+                  },
+                  "doc": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["New", "On Progress", "Finish"],
+                    "example": "New"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "category_id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "New Task"
+                    },
+                    "start_date": {
+                      "type": "string",
+                      "format": "date",
+                      "example": "2001-01-01"
+                    },
+                    "finish_date": {
+                      "type": "string",
+                      "format": "date",
+                      "example": "2001-01-02"
+                    },
+                    "doc": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["New", "On Progress", "Finish"],
+                      "example": "New"
+                    }
+                  }
+                },
+                "example": {
+                  "category_id": "2",
+                  "title": "Task Z",
+                  "start_date": "2001-01-01",
+                  "finish_date": "2001-01-02",
+                  "doc_url": "http://localhost/upload/tasks/n6KPmeCu8R-Some%20File.pdf",
+                  "id": 12
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{task_id}": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Task",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "joins",
+            "description": "Return tasks with its other relations. Task has a category relation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "enum": ["category"]
+            }
+          },
+          {
+            "name": "task_id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "example": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "Get Task",
+                    "value": {
+                      "id": "10",
+                      "category_id": "1",
+                      "title": "Task J",
+                      "description": null,
+                      "start_date": "2001-01-01",
+                      "finish_date": "2001-01-02",
+                      "status": "New",
+                      "doc_url": "http://localhost/upload/tasks/5YvFLT1WGD-Some%20File.pdf"
+                    }
+                  },
+                  "example-1": {
+                    "summary": "Task With Category",
+                    "value": {
+                      "id": "3",
+                      "category_id": "1",
+                      "title": "Task C",
+                      "description": null,
+                      "start_date": "2001-01-01",
+                      "finish_date": "2001-01-02",
+                      "status": "New",
+                      "doc_url": "http://localhost/upload/tasks/RFX0ThCeGV-Some%20File.pdf",
+                      "category": {
+                        "id": "1",
+                        "name": "Lain-lain"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Task",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "category_id",
+                  "title",
+                  "start_date",
+                  "finish_date",
+                  "status",
+                  "doc"
+                ],
+                "properties": {
+                  "category_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "New Task"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2001-01-01"
+                  },
+                  "finish_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2001-01-02"
+                  },
+                  "doc": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["New", "On Progress", "Finish"],
+                    "example": "New"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "example": "16"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleErrorMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Task",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "example": "13"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Task",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "category_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "New Task"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2001-01-01"
+                  },
+                  "finish_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2001-01-02"
+                  },
+                  "doc": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["New", "On Progress", "Finish"],
+                    "example": "New"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "category_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "New Task"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2001-01-01"
+                  },
+                  "finish_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2001-01-02"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["New", "On Progress", "Finish"],
+                    "example": "New"
+                  }
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "category_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "New Task"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2001-01-01"
+                  },
+                  "finish_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2001-01-02"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["New", "On Progress", "Finish"],
+                    "example": "New"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "example": "12"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleErrorMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "InvalidResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Unprocessable Entity"
+          },
+          "errors": {
+            "type": "object",
+            "example": {
+              "field": "Error message."
+            }
+          }
+        }
+      },
+      "SimpleErrorMessage": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Not Found"
+          }
+        }
+      }
+    }
+  }
+}
