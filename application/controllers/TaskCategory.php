@@ -33,7 +33,12 @@ class TaskCategory extends CI_Controller{
   }
 
   public function show($id){
-    echo view_json($this->taskCategoryModel->find($id));
+    $data = $this->taskCategoryModel->find($id);
+    if(!$data){
+      echo view_json(['message' => 'Not Found'], 404);
+      return;
+    }
+    echo view_json($data);
   }
   
   public function create(){

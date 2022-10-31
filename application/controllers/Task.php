@@ -71,6 +71,12 @@ class Task extends CI_Controller{
   }
 
   public function index(){
+    $status = $this->input->get('status');
+
+    if($status){
+      $status = array_filter($this->input->get('status'), fn($x) => in_array($x, ['New', 'On Progress', 'Finish']));
+    }
+
     echo view_json($this->taskModel->all(
       '*',
       [
@@ -81,7 +87,7 @@ class Task extends CI_Controller{
         'title' => $this->input->get('title'),
         'start_date' => $this->input->get('start_date'),
         'finish_date' => $this->input->get('finish_date'),
-        'status' => $this->input->get('status')
+        'status' => $status
       ]
     ));
   }
@@ -108,16 +114,19 @@ class Task extends CI_Controller{
       'allowed_types' => 'pdf|docx|doc|ppt|pptx|odt|xls|xlsx|html',
       'file_name' => $filename,
       'max_size' => 10240,
+      'remove_spaces' => FALSE
     ]);
 
     if(!$this->form_validation->run() || !$this->upload->do_upload('doc')){
       $errors = $this->form_validation->error_array();
-      $errors['doc'] = $this->upload->error_msg[0];
+      if($this->upload->error_msg){
+        $errors['doc'] = $this->upload->error_msg[0];
+      }
       echo view_body_invalid($errors);
       return;
     }
 
-    $data['doc_url'] = base_url("upload/tasks/$filename");
+    $data['doc_url'] = base_url('upload/tasks/' . rawurlencode($filename));
 
     echo view_json($this->taskModel->add($data), 201);
   }
@@ -157,6 +166,7 @@ class Task extends CI_Controller{
         'allowed_types' => 'pdf|docx|doc|ppt|pptx|odt|xls|xlsx|html',
         'file_name' => $newFilename,
         'max_size' => 10240,
+        'remove_spaces' => FALSE
       ]);
 
       if(!$this->upload->do_upload('doc')){
@@ -166,7 +176,7 @@ class Task extends CI_Controller{
         return;
       }
 
-      $data['doc_url'] = base_url("upload/tasks/$newFilename");
+      $data['doc_url'] = base_url('upload/tasks/' . rawurlencode($newFilename));
     }
 
     $this->taskModel->edit($id, $data);
@@ -208,6 +218,7 @@ class Task extends CI_Controller{
       'allowed_types' => 'pdf|docx|doc|ppt|pptx|odt|xls|xlsx|html',
       'file_name' => $newFilename,
       'max_size' => 10240,
+      'remove_spaces' => FALSE
     ]);
 
     if(!$this->upload->do_upload('doc')){
@@ -217,7 +228,7 @@ class Task extends CI_Controller{
       return;
     }
 
-    $data['doc_url'] = base_url("upload/tasks/$newFilename");
+    $data['doc_url'] = base_url('upload/tasks/' . rawurlencode($newFilename));
 
     $this->taskModel->edit($id, $data);
 

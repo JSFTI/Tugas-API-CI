@@ -43,7 +43,7 @@ class TaskCategoryModel extends CI_Model{
 
     $this->db->flush_cache();
 
-    return $this->db->get()->result();
+    return $data;
   }
 
   public function find($id, $selects = null){
