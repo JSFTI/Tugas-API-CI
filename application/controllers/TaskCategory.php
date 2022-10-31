@@ -21,14 +21,14 @@ class TaskCategory extends CI_Controller{
   }
 
   public function index(){
-    $paginate = !$this->input->get('noPagination') ?
+    $paginate = !$this->input->get('no_pagination') ?
       [
-        'page' => +$this->input->get('page'),
-        'limit' => +$this->input->get('limit'),
+        'page' => +$this->input->get('page') ?: null,
+        'limit' => +$this->input->get('limit') ?: null,
       ] : null;       
 
     echo view_json($this->taskCategoryModel->all('*', $paginate, [
-      'name' => $this->input->get('name')
+      'name' => $this->input->get('name') ?: null
     ]));
   }
 

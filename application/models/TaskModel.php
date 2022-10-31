@@ -17,8 +17,8 @@ class TaskModel extends CI_Model{
       }
       
   
-      if(isset($finish_date)){
-        $this->db->where('finish_date <=', $finish_date);
+      if(isset($before_finish_date)){
+        $this->db->where('finish_date <=', $before_finish_date);
       }
   
       if(isset($status)){

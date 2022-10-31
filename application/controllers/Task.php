@@ -77,19 +77,18 @@ class Task extends CI_Controller{
       $status = array_filter($this->input->get('status'), fn($x) => in_array($x, ['New', 'On Progress', 'Finish']));
     }
 
-    echo view_json($this->taskModel->all(
-      '*',
+    $paginate = !$this->input->get('no_pagination') ?
       [
-        'page' => $this->input->get('page'),
-        'limit' => $this->input->get('limit'),
-      ],
-      [
-        'title' => $this->input->get('title'),
-        'start_date' => $this->input->get('start_date'),
-        'finish_date' => $this->input->get('finish_date'),
-        'status' => $status
-      ]
-    ));
+        'page' => +$this->input->get('page') ?: null,
+        'limit' => +$this->input->get('limit') ?: null,
+      ] : null;
+
+    echo view_json($this->taskModel->all('*', $paginate, [
+      'title' => $this->input->get('title') ?: null,
+      'after_start_date' => $this->input->get('after_start_date') ?: null,
+      'before_finish_date' => $this->input->get('before_finish_date') ?: null,
+      'status' => $status
+    ]));
   }
 
   public function show($id){
