@@ -83,7 +83,8 @@ class Task extends CI_Controller{
         'limit' => +$this->input->get('limit') ?: null,
       ] : null;
 
-    echo view_json($this->taskModel->all('*', $paginate, [
+
+    echo view_json($this->taskModel->all('*', $paginate, $this->input->get('joins') ?: null, [
       'title' => $this->input->get('title') ?: null,
       'after_start_date' => $this->input->get('after_start_date') ?: null,
       'before_finish_date' => $this->input->get('before_finish_date') ?: null,
@@ -92,7 +93,12 @@ class Task extends CI_Controller{
   }
 
   public function show($id){
-    echo view_json($this->taskModel->find($id));
+    $data = $this->taskModel->find($id, '*', $this->input->get('joins') ?: null);
+    if(!$data){
+      echo view_json(['message' => 'Not Found'], 404);
+      return;
+    }
+    echo view_json($data);
   }
 
   public function create(){
@@ -103,8 +109,8 @@ class Task extends CI_Controller{
     $this->form_validation->set_rules(array_filter($this->formValidationRules, fn($x) => $x['field'] !== 'status'));
 
     $filename = null;
-    
-    if($_FILES['doc']){
+
+    if(array_key_exists('doc', $_FILES)){
       $filename = add_hash_filename($_FILES['doc']['name']);
     }
 
@@ -149,7 +155,7 @@ class Task extends CI_Controller{
       return;
     }
 
-    if($_FILES['doc']){
+    if(array_key_exists('doc', $_FILES)){
       $oldFileUrl = $this->taskModel->find($id, ['doc_url'])->doc_url;
       $explodedOldFileUrl = explode('/', $oldFileUrl);
       $filename = array_pop($explodedOldFileUrl);
@@ -158,7 +164,11 @@ class Task extends CI_Controller{
         unlink("./upload/tasks/$filename");
       }
 
-      $newFilename = add_hash_filename($_FILES['doc']['name']);
+      $newFilename = null;
+
+      if(array_key_exists('doc', $_FILES)){
+        $newFilename = add_hash_filename($_FILES['doc']['name']);
+      }
 
       $this->load->library('upload', [
         'upload_path' => './upload/tasks',
@@ -206,7 +216,11 @@ class Task extends CI_Controller{
     $explodedOldFileUrl = explode('/', $oldFileUrl);
     $filename = array_pop($explodedOldFileUrl);
 
-    $newFilename = add_hash_filename($_FILES['doc']['name']);
+    $newFilename = null;
+
+    if(array_key_exists('doc', $_FILES)){
+      $newFilename = add_hash_filename($_FILES['doc']['name']);
+    }
 
     if(file_exists("./upload/tasks/$filename")){
       unlink("./upload/tasks/$filename");

@@ -11,6 +11,10 @@ class TaskCategoryModel extends CI_Model{
       if(isset($name)){
         $this->db->like('name', $name, 'both');
       }
+
+      if(isset($ids)){
+        $this->db->where_in('id', $ids);
+      }
     }
 
     $this->db->stop_cache();

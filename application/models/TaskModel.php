@@ -2,7 +2,23 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class TaskModel extends CI_Model{
-  public function all($selects = null, $paginate = null, $filters = null){
+  private function join_category(&$tasks){
+    $this->load->model('taskCategoryModel');
+
+    if(is_array($tasks)){
+      $categories = $this->taskCategoryModel->all('*', null, [
+        'ids' => array_map(fn($x) => $x->category_id ?? 0, $tasks)
+      ]);
+      for($i = 0; $i < count($tasks); $i++){
+        $tasks[$i]->category = array_filter($categories, fn($x) => $x->id === $tasks[$i]->category_id)[0];
+      }
+      return;
+    }
+
+    $tasks->category = $this->taskCategoryModel->find($tasks->category_id ?? 0);
+  }
+
+  public function all($selects = null, $paginate = null, $joins = [], $filters = null){
     $this->db->start_cache();
 
     if($filters){
@@ -46,6 +62,12 @@ class TaskModel extends CI_Model{
     
       $this->db->flush_cache();
 
+      if($joins){
+        if(in_array('category', $joins)){
+          $this->join_category($data);
+        }
+      }
+
       return (object) [
         'current_page' => $page,
         'count_data' => $allCount,
@@ -60,12 +82,26 @@ class TaskModel extends CI_Model{
 
     $this->db->flush_cache();
 
+    if($joins && is_array($joins)){
+      if(in_array('category', $joins)){
+        $this->join_category($data);
+      } 
+    }
+
     return $data;
   }
 
-  public function find($id, $selects = null){
-    return $this->db->select($selects ?: '*')->where('id', $id)
+  public function find($id, $selects = null, $joins = null){
+    $data = $this->db->select($selects ?: '*')->where('id', $id)
       ->from('tasks')->get()->first_row();
+
+    if($joins && is_array($joins)){
+      if(in_array('category', $joins)){
+        $this->join_category($data);
+      }
+    }
+
+    return $data;
   }
 
   public function exists($id){

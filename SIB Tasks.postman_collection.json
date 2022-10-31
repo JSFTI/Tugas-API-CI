@@ -1,0 +1,2507 @@
+{
+	"info": {
+		"_postman_id": "d459f8a8-0aa9-49fb-9c9d-3752941346ad",
+		"name": "SIB Tasks",
+		"description": "This API is made to fulfill the assignment from PT. Arkatama Multisolusindo in FWD SIB program.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11114399"
+	},
+	"item": [
+		{
+			"name": "Task Category",
+			"item": [
+				{
+					"name": "Task Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/task-categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"task-categories"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "",
+									"description": "Page to get",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Number of items in a page",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "",
+									"description": "FIlter by name",
+									"disabled": true
+								},
+								{
+									"key": "no_pagination",
+									"value": "",
+									"description": "If provided with 1, response will not be paginated",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Task Categories With Pagination",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/task-categories?page=1&limit=10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:23:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"current_page\": 1,\n    \"count\": 7,\n    \"last_page\": 1,\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"name\": \"Tugas Sekolah\"\n        },\n        {\n            \"id\": \"2\",\n            \"name\": \"Transportasi\"\n        },\n        {\n            \"id\": \"3\",\n            \"name\": \"Urusan Keluarga\"\n        },\n        {\n            \"id\": \"4\",\n            \"name\": \"Kesehatan\"\n        },\n        {\n            \"id\": \"5\",\n            \"name\": \"Keuangan\"\n        },\n        {\n            \"id\": \"6\",\n            \"name\": \"Sosial\"\n        },\n        {\n            \"id\": \"7\",\n            \"name\": \"Peningkatan\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Task Categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/task-categories?noPagination=1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories"
+									],
+									"query": [
+										{
+											"key": "noPagination",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:25:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"1\",\n        \"name\": \"Tugas Sekolah\"\n    },\n    {\n        \"id\": \"2\",\n        \"name\": \"Transportasi\"\n    },\n    {\n        \"id\": \"3\",\n        \"name\": \"Urusan Keluarga\"\n    },\n    {\n        \"id\": \"4\",\n        \"name\": \"Kesehatan\"\n    },\n    {\n        \"id\": \"5\",\n        \"name\": \"Keuangan\"\n    },\n    {\n        \"id\": \"6\",\n        \"name\": \"Sosial\"\n    },\n    {\n        \"id\": \"7\",\n        \"name\": \"Peningkatan\"\n    }\n]"
+						},
+						{
+							"name": "Task Categories FIltering",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/task-categories?name=tugas",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "tugas"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:25:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"current_page\": 1,\n    \"count\": 1,\n    \"last_page\": 1,\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"name\": \"Tugas Sekolah\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Task Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/task-categories/:task_category_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"task-categories",
+								":task_category_id"
+							],
+							"variable": [
+								{
+									"key": "task_category_id",
+									"value": "",
+									"description": "ID of category"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Task Category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/task-categories/:task_category_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories",
+										":task_category_id"
+									],
+									"variable": [
+										{
+											"key": "task_category_id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:27:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"3\",\n    \"name\": \"Urusan Keluarga\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/task-categories/:task_category_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories",
+										":task_category_id"
+									],
+									"variable": [
+										{
+											"key": "task_category_id",
+											"value": "3100"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:28:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Task Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/task-categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"task-categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Task Category",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Peningkatan\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/task-categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:23:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Peningkatan\",\n    \"id\": 7\n}"
+						},
+						{
+							"name": "Invalid Request Body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/task-categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories"
+									]
+								}
+							},
+							"status": "Unknown Status Code",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:29:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unprocessable Entity\",\n    \"errors\": {\n        \"name\": \"Kategori harus memiliki nama\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Task Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/task-categories/:task_category_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"task-categories",
+								":task_category_id"
+							],
+							"variable": [
+								{
+									"key": "task_category_id",
+									"value": "",
+									"description": "ID of category"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Kategori 3x\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/task-categories/:task_category_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories",
+										":task_category_id"
+									],
+									"variable": [
+										{
+											"key": "task_category_id",
+											"value": "1000"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:30:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						},
+						{
+							"name": "Update Task Category",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Lain-lain\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/task-categories/:task_category_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories",
+										":task_category_id"
+									],
+									"variable": [
+										{
+											"key": "task_category_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:31:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Invalid Request Body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/task-categories/:task_category_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories",
+										":task_category_id"
+									],
+									"variable": [
+										{
+											"key": "task_category_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Unknown Status Code",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:31:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unprocessable Entity\",\n    \"errors\": {\n        \"name\": \"Kategori harus memiliki nama\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Task Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/task-categories/:task_category_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"task-categories",
+								":task_category_id"
+							],
+							"variable": [
+								{
+									"key": "task_category_id",
+									"value": "",
+									"description": "ID of category"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/task-categories/:task_category_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories",
+										":task_category_id"
+									],
+									"variable": [
+										{
+											"key": "task_category_id",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:31:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						},
+						{
+							"name": "Delete Task Category",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/task-categories/:task_category_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories",
+										":task_category_id"
+									],
+									"variable": [
+										{
+											"key": "task_category_id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:32:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Task Category",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/task-categories/:task_category_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"task-categories",
+								":task_category_id"
+							],
+							"variable": [
+								{
+									"key": "task_category_id",
+									"value": "",
+									"description": "ID of category"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit Task Category",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Lainnya\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/task-categories/:task_category_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories",
+										":task_category_id"
+									],
+									"variable": [
+										{
+											"key": "task_category_id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:32:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Lainnya\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/task-categories/:task_category_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories",
+										":task_category_id"
+									],
+									"variable": [
+										{
+											"key": "task_category_id",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:33:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						},
+						{
+							"name": "Invalid Request Body",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/task-categories/:task_category_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"task-categories",
+										":task_category_id"
+									],
+									"variable": [
+										{
+											"key": "task_category_id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"status": "Unknown Status Code",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 04:34:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unprocessable Entity\",\n    \"errors\": {\n        \"name\": \"Kategori harus memiliki nama\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "This collection manages task categories."
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Pagination for page number",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Number of items to show",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "",
+									"description": "Filter task by status. Recognized status values are \"New\", \"On Progress\", and \"Finish\". Other values will be ignored",
+									"disabled": true
+								},
+								{
+									"key": "after_start_date",
+									"value": "",
+									"description": "Filter task after start_date.",
+									"disabled": true
+								},
+								{
+									"key": "no_pagination",
+									"value": "1",
+									"description": "If provided with 1, response will not be paginated.",
+									"disabled": true
+								},
+								{
+									"key": "before_finish_date",
+									"value": "",
+									"description": "Filter task before finish_date.",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "",
+									"description": "Filter task by title.\n",
+									"disabled": true
+								},
+								{
+									"key": "joins[]",
+									"value": "category",
+									"description": "Return tasks with its other relations. Task has a category relation",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Tasks WIth Pagination",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tasks?page=1&limit=10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Pagination for page number"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "Number of items to show"
+										},
+										{
+											"key": "status",
+											"value": "",
+											"description": "Filter task by status. Recognized status values are \"New\", \"On Progress\", and \"Finish\". Other values will be ignored",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "",
+											"description": "Filter task by title.",
+											"disabled": true
+										},
+										{
+											"key": "after_start_date",
+											"value": "",
+											"description": "Filter task after start_date.",
+											"disabled": true
+										},
+										{
+											"key": "no_pagination",
+											"value": "",
+											"description": "If provided with 1, response will not be paginated.",
+											"disabled": true
+										},
+										{
+											"key": "before_finish_date",
+											"value": "",
+											"description": "Filter task before finish_date.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 07:55:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"current_page\": 1,\n    \"count_data\": 11,\n    \"last_page\": 2,\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"category_id\": \"1\",\n            \"title\": \"Task A\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/gJMiqks79I-Some%20File.pdf\"\n        },\n        {\n            \"id\": \"2\",\n            \"category_id\": \"1\",\n            \"title\": \"Task B\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/KBMqmxHa1R-Some%20File.pdf\"\n        },\n        {\n            \"id\": \"3\",\n            \"category_id\": \"1\",\n            \"title\": \"Task C\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/RFX0ThCeGV-Some%20File.pdf\"\n        },\n        {\n            \"id\": \"4\",\n            \"category_id\": \"1\",\n            \"title\": \"Task D\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/ilbYXGBuIO-Some%20File.pdf\"\n        },\n        {\n            \"id\": \"5\",\n            \"category_id\": \"1\",\n            \"title\": \"Task E\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/4CvFh7rwAm-Some%20File.pdf\"\n        },\n        {\n            \"id\": \"6\",\n            \"category_id\": \"1\",\n            \"title\": \"Task F\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/06IWNqpDSG-Some%20File.pdf\"\n        },\n        {\n            \"id\": \"7\",\n            \"category_id\": \"1\",\n            \"title\": \"Task G\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/AxKXZCBMsI-Some%20File.pdf\"\n        },\n        {\n            \"id\": \"8\",\n            \"category_id\": \"1\",\n            \"title\": \"Task H\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/W5wIET8DGj-Some%20File.pdf\"\n        },\n        {\n            \"id\": \"9\",\n            \"category_id\": \"1\",\n            \"title\": \"Task I\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/NpR9eDFOjC-Some%20File.pdf\"\n        },\n        {\n            \"id\": \"10\",\n            \"category_id\": \"1\",\n            \"title\": \"Task J\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/5YvFLT1WGD-Some%20File.pdf\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get Tasks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tasks?no_pagination=1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "",
+											"description": "Pagination for page number",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "",
+											"description": "Number of items to show",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "",
+											"description": "Filter task by status. Recognized status values are \"New\", \"On Progress\", and \"Finish\". Other values will be ignored",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "",
+											"description": "Filter task by title.",
+											"disabled": true
+										},
+										{
+											"key": "after_start_date",
+											"value": "",
+											"description": "Filter task after start_date.",
+											"disabled": true
+										},
+										{
+											"key": "no_pagination",
+											"value": "1",
+											"description": "If provided with 1, response will not be paginated."
+										},
+										{
+											"key": "before_finish_date",
+											"value": "",
+											"description": "Filter task before finish_date.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 07:56:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"1\",\n        \"category_id\": \"1\",\n        \"title\": \"Task A\",\n        \"description\": null,\n        \"start_date\": \"2001-01-01\",\n        \"finish_date\": \"2001-01-02\",\n        \"status\": \"New\",\n        \"doc_url\": \"localhost:8000/upload/tasks/gJMiqks79I-Some%20File.pdf\"\n    },\n    {\n        \"id\": \"2\",\n        \"category_id\": \"1\",\n        \"title\": \"Task B\",\n        \"description\": null,\n        \"start_date\": \"2001-01-01\",\n        \"finish_date\": \"2001-01-02\",\n        \"status\": \"New\",\n        \"doc_url\": \"localhost:8000/upload/tasks/KBMqmxHa1R-Some%20File.pdf\"\n    },\n    {\n        \"id\": \"3\",\n        \"category_id\": \"1\",\n        \"title\": \"Task C\",\n        \"description\": null,\n        \"start_date\": \"2001-01-01\",\n        \"finish_date\": \"2001-01-02\",\n        \"status\": \"New\",\n        \"doc_url\": \"localhost:8000/upload/tasks/RFX0ThCeGV-Some%20File.pdf\"\n    },\n    {\n        \"id\": \"4\",\n        \"category_id\": \"1\",\n        \"title\": \"Task D\",\n        \"description\": null,\n        \"start_date\": \"2001-01-01\",\n        \"finish_date\": \"2001-01-02\",\n        \"status\": \"New\",\n        \"doc_url\": \"localhost:8000/upload/tasks/ilbYXGBuIO-Some%20File.pdf\"\n    },\n    {\n        \"id\": \"5\",\n        \"category_id\": \"1\",\n        \"title\": \"Task E\",\n        \"description\": null,\n        \"start_date\": \"2001-01-01\",\n        \"finish_date\": \"2001-01-02\",\n        \"status\": \"New\",\n        \"doc_url\": \"localhost:8000/upload/tasks/4CvFh7rwAm-Some%20File.pdf\"\n    },\n    {\n        \"id\": \"6\",\n        \"category_id\": \"1\",\n        \"title\": \"Task F\",\n        \"description\": null,\n        \"start_date\": \"2001-01-01\",\n        \"finish_date\": \"2001-01-02\",\n        \"status\": \"New\",\n        \"doc_url\": \"localhost:8000/upload/tasks/06IWNqpDSG-Some%20File.pdf\"\n    },\n    {\n        \"id\": \"7\",\n        \"category_id\": \"1\",\n        \"title\": \"Task G\",\n        \"description\": null,\n        \"start_date\": \"2001-01-01\",\n        \"finish_date\": \"2001-01-02\",\n        \"status\": \"New\",\n        \"doc_url\": \"localhost:8000/upload/tasks/AxKXZCBMsI-Some%20File.pdf\"\n    },\n    {\n        \"id\": \"8\",\n        \"category_id\": \"1\",\n        \"title\": \"Task H\",\n        \"description\": null,\n        \"start_date\": \"2001-01-01\",\n        \"finish_date\": \"2001-01-02\",\n        \"status\": \"New\",\n        \"doc_url\": \"localhost:8000/upload/tasks/W5wIET8DGj-Some%20File.pdf\"\n    },\n    {\n        \"id\": \"9\",\n        \"category_id\": \"1\",\n        \"title\": \"Task I\",\n        \"description\": null,\n        \"start_date\": \"2001-01-01\",\n        \"finish_date\": \"2001-01-02\",\n        \"status\": \"New\",\n        \"doc_url\": \"localhost:8000/upload/tasks/NpR9eDFOjC-Some%20File.pdf\"\n    },\n    {\n        \"id\": \"10\",\n        \"category_id\": \"1\",\n        \"title\": \"Task J\",\n        \"description\": null,\n        \"start_date\": \"2001-01-01\",\n        \"finish_date\": \"2001-01-02\",\n        \"status\": \"New\",\n        \"doc_url\": \"localhost:8000/upload/tasks/5YvFLT1WGD-Some%20File.pdf\"\n    },\n    {\n        \"id\": \"11\",\n        \"category_id\": \"1\",\n        \"title\": \"Task K\",\n        \"description\": null,\n        \"start_date\": \"2001-01-01\",\n        \"finish_date\": \"2001-01-02\",\n        \"status\": \"New\",\n        \"doc_url\": \"localhost:8000/upload/tasks/U2Qk3RVLTj-Some%20File.pdf\"\n    }\n]"
+						},
+						{
+							"name": "Filter Tasks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tasks?title=Task A",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "",
+											"description": "Pagination for page number",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "",
+											"description": "Number of items to show",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "",
+											"description": "Filter task by status. Recognized status values are \"New\", \"On Progress\", and \"Finish\". Other values will be ignored",
+											"disabled": true
+										},
+										{
+											"key": "after_start_date",
+											"value": "",
+											"description": "Filter task after start_date.",
+											"disabled": true
+										},
+										{
+											"key": "no_pagination",
+											"value": "1",
+											"description": "If provided with 1, response will not be paginated.",
+											"disabled": true
+										},
+										{
+											"key": "before_finish_date",
+											"value": "",
+											"description": "Filter task before finish_date.",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "Task A",
+											"description": "Filter task by title.\n"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:01:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"current_page\": 1,\n    \"count_data\": 1,\n    \"last_page\": 1,\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"category_id\": \"1\",\n            \"title\": \"Task A\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/gJMiqks79I-Some%20File.pdf\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Tasks With Category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tasks?joins[]=category",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Pagination for page number",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "",
+											"description": "Number of items to show",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "",
+											"description": "Filter task by status. Recognized status values are \"New\", \"On Progress\", and \"Finish\". Other values will be ignored",
+											"disabled": true
+										},
+										{
+											"key": "after_start_date",
+											"value": "",
+											"description": "Filter task after start_date.",
+											"disabled": true
+										},
+										{
+											"key": "no_pagination",
+											"value": "1",
+											"description": "If provided with 1, response will not be paginated.",
+											"disabled": true
+										},
+										{
+											"key": "before_finish_date",
+											"value": "",
+											"description": "Filter task before finish_date.",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "",
+											"description": "Filter task by title.\n",
+											"disabled": true
+										},
+										{
+											"key": "joins[]",
+											"value": "category",
+											"description": "Return tasks with its other relations. Task has a category relation"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:24:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"current_page\": 1,\n    \"count_data\": 11,\n    \"last_page\": 2,\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"category_id\": \"1\",\n            \"title\": \"Task A\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/gJMiqks79I-Some%20File.pdf\",\n            \"category\": {\n                \"id\": \"1\",\n                \"name\": \"Lain-lain\"\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"category_id\": \"1\",\n            \"title\": \"Task B\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/KBMqmxHa1R-Some%20File.pdf\",\n            \"category\": {\n                \"id\": \"1\",\n                \"name\": \"Lain-lain\"\n            }\n        },\n        {\n            \"id\": \"3\",\n            \"category_id\": \"1\",\n            \"title\": \"Task C\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/RFX0ThCeGV-Some%20File.pdf\",\n            \"category\": {\n                \"id\": \"1\",\n                \"name\": \"Lain-lain\"\n            }\n        },\n        {\n            \"id\": \"4\",\n            \"category_id\": \"1\",\n            \"title\": \"Task D\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/ilbYXGBuIO-Some%20File.pdf\",\n            \"category\": {\n                \"id\": \"1\",\n                \"name\": \"Lain-lain\"\n            }\n        },\n        {\n            \"id\": \"5\",\n            \"category_id\": \"1\",\n            \"title\": \"Task E\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/4CvFh7rwAm-Some%20File.pdf\",\n            \"category\": {\n                \"id\": \"1\",\n                \"name\": \"Lain-lain\"\n            }\n        },\n        {\n            \"id\": \"6\",\n            \"category_id\": \"1\",\n            \"title\": \"Task F\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/06IWNqpDSG-Some%20File.pdf\",\n            \"category\": {\n                \"id\": \"1\",\n                \"name\": \"Lain-lain\"\n            }\n        },\n        {\n            \"id\": \"7\",\n            \"category_id\": \"1\",\n            \"title\": \"Task G\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/AxKXZCBMsI-Some%20File.pdf\",\n            \"category\": {\n                \"id\": \"1\",\n                \"name\": \"Lain-lain\"\n            }\n        },\n        {\n            \"id\": \"8\",\n            \"category_id\": \"1\",\n            \"title\": \"Task H\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/W5wIET8DGj-Some%20File.pdf\",\n            \"category\": {\n                \"id\": \"1\",\n                \"name\": \"Lain-lain\"\n            }\n        },\n        {\n            \"id\": \"9\",\n            \"category_id\": \"1\",\n            \"title\": \"Task I\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/NpR9eDFOjC-Some%20File.pdf\",\n            \"category\": {\n                \"id\": \"1\",\n                \"name\": \"Lain-lain\"\n            }\n        },\n        {\n            \"id\": \"10\",\n            \"category_id\": \"1\",\n            \"title\": \"Task J\",\n            \"description\": null,\n            \"start_date\": \"2001-01-01\",\n            \"finish_date\": \"2001-01-02\",\n            \"status\": \"New\",\n            \"doc_url\": \"localhost:8000/upload/tasks/5YvFLT1WGD-Some%20File.pdf\",\n            \"category\": {\n                \"id\": \"1\",\n                \"name\": \"Lain-lain\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/:task_id?joins[]=category",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								":task_id"
+							],
+							"query": [
+								{
+									"key": "joins[]",
+									"value": "category",
+									"description": "Return task with its other relation. Task has a category relation."
+								}
+							],
+							"variable": [
+								{
+									"key": "task_id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Task",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tasks/:task_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										":task_id"
+									],
+									"variable": [
+										{
+											"key": "task_id",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:04:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"10\",\n    \"category_id\": \"1\",\n    \"title\": \"Task J\",\n    \"description\": null,\n    \"start_date\": \"2001-01-01\",\n    \"finish_date\": \"2001-01-02\",\n    \"status\": \"New\",\n    \"doc_url\": \"localhost:8000/upload/tasks/5YvFLT1WGD-Some%20File.pdf\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tasks/:task_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										":task_id"
+									],
+									"variable": [
+										{
+											"key": "task_id",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:04:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						},
+						{
+							"name": "Task With Category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tasks/:task_id?joins[]=category",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										":task_id"
+									],
+									"query": [
+										{
+											"key": "joins[]",
+											"value": "category",
+											"description": "Return task with its other relation. Task has a category relation."
+										}
+									],
+									"variable": [
+										{
+											"key": "task_id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:27:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"3\",\n    \"category_id\": \"1\",\n    \"title\": \"Task C\",\n    \"description\": null,\n    \"start_date\": \"2001-01-01\",\n    \"finish_date\": \"2001-01-02\",\n    \"status\": \"New\",\n    \"doc_url\": \"localhost:8000/upload/tasks/RFX0ThCeGV-Some%20File.pdf\",\n    \"category\": {\n        \"id\": \"1\",\n        \"name\": \"Lain-lain\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Task Z",
+									"type": "text"
+								},
+								{
+									"key": "start_date",
+									"value": "2001-01-01",
+									"type": "text"
+								},
+								{
+									"key": "finish_date",
+									"value": "2001-01-02",
+									"type": "text"
+								},
+								{
+									"key": "doc",
+									"type": "file",
+									"src": "/home/jason/Documents/Some File.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Task",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "Task Z",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "2001-01-01",
+											"type": "text"
+										},
+										{
+											"key": "finish_date",
+											"value": "2001-01-02",
+											"type": "text"
+										},
+										{
+											"key": "doc",
+											"type": "file",
+											"src": "/home/jason/Documents/Some File.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/tasks",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:29:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category_id\": \"2\",\n    \"title\": \"Task Z\",\n    \"start_date\": \"2001-01-01\",\n    \"finish_date\": \"2001-01-02\",\n    \"doc_url\": \"localhost:8000/upload/tasks/n6KPmeCu8R-Some%20File.pdf\",\n    \"id\": 12\n}"
+						},
+						{
+							"name": "Invalid Request Body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "Task Z",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "start_date",
+											"value": "2001-01-01",
+											"type": "text"
+										},
+										{
+											"key": "finish_date",
+											"value": "2001-01-02",
+											"type": "text"
+										},
+										{
+											"key": "doc",
+											"type": "file",
+											"src": "/home/jason/Documents/Some File.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/tasks",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks"
+									]
+								}
+							},
+							"status": "Unknown Status Code",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:31:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unprocessable Entity\",\n    \"errors\": {\n        \"title\": \"Harap masukkan judul\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Judul X",
+									"type": "text"
+								},
+								{
+									"key": "start_date",
+									"value": "2001-01-01",
+									"type": "text"
+								},
+								{
+									"key": "finish_date",
+									"value": "2001-01-01",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "New",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "doc",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks/:task_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								":task_id"
+							],
+							"variable": [
+								{
+									"key": "task_id",
+									"value": "16"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Task",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Judul X",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "2001-01-01",
+											"type": "text"
+										},
+										{
+											"key": "finish_date",
+											"value": "2001-01-01",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "New",
+											"type": "text"
+										},
+										{
+											"key": "category_id",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "doc",
+											"type": "file",
+											"src": "/home/jason/Documents/test.pptx"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/tasks/:task_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										":task_id"
+									],
+									"variable": [
+										{
+											"key": "task_id",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:31:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Invalid Request Body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Judul X",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "2001-01-01",
+											"type": "text"
+										},
+										{
+											"key": "finish_date",
+											"value": "2001-01-01",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "New",
+											"type": "text"
+										},
+										{
+											"key": "category_id",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "doc",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/tasks/:task_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										":task_id"
+									],
+									"variable": [
+										{
+											"key": "task_id",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"status": "Unknown Status Code",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:34:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unprocessable Entity\",\n    \"errors\": {\n        \"doc\": \"You did not select a file to upload.\"\n    }\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Judul X",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "2001-01-01",
+											"type": "text"
+										},
+										{
+											"key": "finish_date",
+											"value": "2001-01-01",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "New",
+											"type": "text"
+										},
+										{
+											"key": "category_id",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "doc",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/tasks/:task_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										":task_id"
+									],
+									"variable": [
+										{
+											"key": "task_id",
+											"value": "16"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:36:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/:task_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								":task_id"
+							],
+							"variable": [
+								{
+									"key": "task_id",
+									"value": "13"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Task",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tasks/:task_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										":task_id"
+									],
+									"variable": [
+										{
+											"key": "task_id",
+											"value": "13"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:35:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tasks/:task_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										":task_id"
+									],
+									"variable": [
+										{
+											"key": "task_id",
+											"value": "13"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:35:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Task",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks/:task_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								":task_id"
+							],
+							"variable": [
+								{
+									"key": "task_id",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit Task",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"SAWADC\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/tasks/:task_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										":task_id"
+									],
+									"variable": [
+										{
+											"key": "task_id",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:36:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"SAWADC\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/tasks/:task_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										":task_id"
+									],
+									"variable": [
+										{
+											"key": "task_id",
+											"value": "15"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:37:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						},
+						{
+							"name": "Invalid Request Body",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/tasks/:task_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										":task_id"
+									],
+									"variable": [
+										{
+											"key": "task_id",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"status": "Unknown Status Code",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:37:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unprocessable Entity\",\n    \"errors\": {\n        \"title\": \"Harap masukkan judul\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "This collection manages tasks.\n\nNote: to upload a file, HTTP Content-Type must be set to multipart/form-data. Thus, POST and PUT must use multipart/form-data content-type to upload files. PATCH is not required to use multipart/form-data if there is no need for file upload."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:8000",
+			"type": "string"
+		}
+	]
+}
